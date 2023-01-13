@@ -149,7 +149,31 @@
                 "rule_type":"request_header",
                 "string_match":"xss_payload",
                 "string_replace":"\"><svg/onload=alert(1)>"
-            }            
+            }   
+            {
+                "comment":"Find SQL injections",
+                "enabled":true,
+                "is_simple_match":true,
+                "rule_type":"request_header",
+                "string_match":"sql-injection",
+                "string_replace":"'"
+            }  
+            {
+                "comment":"Find time based SQL injection",
+                "enabled":true,
+                "is_simple_match":true,
+                "rule_type":"request_header",
+                "string_match":"SQL Injection time-based",
+                "string_replace":"';waitfor delay '0:0:5'-->"
+            }  
+            {
+                "comment":"Find time based SQL injection through parameters",
+                "enabled":true,
+                "is_simple_match":true,
+                "rule_type":"request_header",
+                "string_match":"SQL Injection time-based",
+                "string_replace":"') or sleep(5)='"
+            }  
         ]
     }
 }
